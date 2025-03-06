@@ -1,3 +1,3 @@
 ## jomify-s-notebook
-this is a note for algorithm from MIT introduction of algorithm  
-**speed is always fun**
+
+for the master there is algorithms so **speed is always fun**;  
