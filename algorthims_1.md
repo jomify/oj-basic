@@ -1,6 +1,8 @@
 # NOTE_for_algorithm
 
-## Algorithms Definition
+## basic knowledge
+
+### Algorithms Definition
 
 So, what is an algorithm? Someone might say it is just an approach to solve a math problem, but now I'm going to define it:
 
@@ -15,7 +17,7 @@ Another reason is that it provides a language to communicate about program behav
 
 Before we dive into the first problem, let's address some preliminary questions.
 
-## Running Time
+### Running Time
 
 In the previous section, we discussed that algorithms are the art of performance, but what does that really mean? The answer lies in **running time**.
 
@@ -26,7 +28,7 @@ It also depends on the size of the input; the difference between an input size o
 
 In algorithms, we parameterize the input size using `n -> ∞` and often calculate the upper bound because it serves as a guarantee to the user, telling them "the code will not exceed this time.  
 
-## Kinds of analysis  
+### Kinds of analysis  
 
 In total there three situation we should think about  
 
@@ -37,7 +39,7 @@ second case the averange csse: we sometimes think sbout it. T(N)=eccpetion time 
 
 and for the last sicuation is the best case: but unfortunaly we almost never meet this case for it just cheat to user and ouselg.  
 
-## BIG IDEA  
+### BIG IDEA  
 
 there are some options you should have while you learning algorithms  
 
@@ -47,5 +49,57 @@ second look at the grown of the running time just focus on the trend
 
 there is a good example of it.  
 
-## Asymptotic notation
+### Asymptotic notation
 
+Just like we said at before agorithms is not just a tool but a kind of language.  
+
+as a language there must be some notation to describe it:  
+**θ- notation** it mean we drop low order terms and igonre leading coustant.  
+
+for instant 3*n^3+90*n^2-*n+6064 = θ(n^3);
+
+as n->inity the low order subject are faster than the high one.
+
+now the pre parts is over let"s going to the Problem one  
+
+## Problem one -sort
+
+### INSERTION SORT
+
+at first we just use an instant to make it explicitation:  
+
+almost everyone have played poker we always put the small in left and the bigs in right;  
+
+for one of the poker **we just compare it with the pokers before it and insert it in the correct location;**  
+
+it's the main idea in insertion sort  
+
+so first let's look at the pseudocode:
+
+INSERTION SORT(A,N)//sort a[1->n]
+for j=2->n;  
+ do key<-a[j]  
+ i=j-1;  
+ while i>0 and a[i]>key
+  |do a[i+1]<-a[i]  
+  |i=i-1  
+  |a[i+1]<-key  
+
+finish of all  
+
+by using C++ we can write it as:
+
+``` c++
+
+void insertionsort(int &arr,int n){
+    for(int i=1;i<n;i++>){
+        int key=arr[i];
+        int j=i-1;
+        while(j>0&&arr[j]><key){
+            arr[j+1]=arr[j];
+            j--;
+        }
+        a[j+1]=key;
+    }
+}
+```  
