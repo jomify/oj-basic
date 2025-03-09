@@ -1,105 +1,150 @@
-# NOTE_for_algorithm
+# Algorithms Learning Notes
 
-## basic knowledge
+## Basic Knowledge
 
-### Algorithms Definition
+### What is an Algorithm?
 
-So, what is an algorithm? Someone might say it is just an approach to solve a math problem, but now I'm going to define it:
+**Definition:** An algorithm is a step-by-step procedure designed to solve a specific computational problem.
 
-**Definition:** An algorithm is the theoretical study of computer program **performance** and resource usage.  
+Studying algorithms involves analyzing their **performance** (how fast they run) and **resource usage** (like memory). Performance analysis is crucial because:
 
-Actually, we often focus on the performance of an algorithm, although there are many other important factors beyond performance.  
-
-So why do we study algorithms and performance?  
-
-One reason is that with its help, we can make feasible versions of an algorithm out of previously infeasible ones.  
-Another reason is that it provides a language to communicate about program behavior, no matter what programming language someone is using.  
-
-Before we dive into the first problem, let's address some preliminary questions.
+- It transforms previously infeasible algorithms into practical ones.
+- It provides a universal language to discuss program behavior independently from specific programming languages.
 
 ### Running Time
 
-In the previous section, we discussed that algorithms are the art of performance, but what does that really mean? The answer lies in **running time**.
+Running time measures algorithm efficiency. It depends primarily on two factors:
 
-In computer science, we use time and space as key metrics to assess every program, much like you assess the cost-effectiveness of a product.  
+- **Nature of Input:** Certain inputs allow algorithms to run faster.
+- **Input Size (n):** Larger input sizes typically result in increased running times.
 
-Running time always depends on the input: if the input is the solution, your program will be as fast as possible.  
-It also depends on the size of the input; the difference between an input size of 6 and 6*10^9 is substantial.  
+We parameterize performance based on input size, usually considering it as `n → ∞`. Often, we focus on upper bounds, guaranteeing that performance won't exceed certain limits.
 
-In algorithms, we parameterize the input size using `n -> ∞` and often calculate the upper bound because it serves as a guarantee to the user, telling them "the code will not exceed this time.  
+### Types of Algorithm Analysis
 
-### Kinds of analysis  
+When analyzing algorithm performance, we consider three scenarios:
 
-In total there three situation we should think about  
+- **Worst Case:** The maximum running time over all possible inputs. Usually emphasized due to its safety guarantees.
 
-first the worst case: this is the case we always concentrate on, t(N)= MAX time on any input of size.  
-//but you should remanber that T(n) is just a equation of time not a true and correct time  
+- **Average Case:** The expected running time averaged over all possible inputs, assuming a specific statistical distribution.
 
-second case the averange csse: we sometimes think sbout it. T(N)=eccpetion time over all input of size, what we need is a sumption of statisical distribution of input;  
+- **Best Case:** The minimum running time, usually of theoretical interest, as it rarely occurs in practice.
 
-and for the last sicuation is the best case: but unfortunaly we almost never meet this case for it just cheat to user and ouselg.  
+### Key Idea in Algorithm Analysis
 
-### BIG IDEA  
+Two important principles:
 
-there are some options you should have while you learning algorithms  
+- **Ignore Machine-Dependent Constants:** Focus on algorithmic structure rather than specific hardware.
+- **Growth Rate:** Prioritize understanding how running time grows with increasing input sizes (as n approaches infinity).
 
-first Ignore machine-dependent constants  
+### Asymptotic Notation
 
-second look at the grown of the running time just focus on the trend  
+To simplify analysis, we use special notations that describe algorithm complexity by ignoring less significant terms and constants:
 
-there is a good example of it.  
+- **Θ (Theta) notation:** Describes asymptotic tight bound.
 
-### Asymptotic notation
+For example:
 
-Just like we said at before agorithms is not just a tool but a kind of language.  
+\[ 3n^3 + 90n^2 - n + 6064 = \Theta(n^3) \]
 
-as a language there must be some notation to describe it:  
-**θ- notation** it mean we drop low order terms and igonre leading coustant.  
+Lower-order terms and constants become negligible as input size grows.
 
-for instant 3*n^3+90*n^2-*n+6064 = θ(n^3);
+---
 
-as n->inity the low order subject are faster than the high one.
+## Problem One: Sorting Algorithms
 
-now the pre parts is over let"s going to the Problem one  
+### 1. Insertion Sort
 
-## Problem one -sort
+**Idea:** Think about sorting playing cards. Each new card is inserted into the correct position relative to already sorted cards.
 
-### INSERTION SORT
+**Pseudocode:**
 
-at first we just use an instant to make it explicitation:  
+```
+InsertionSort(A, n)
+for j = 2 to n:
+    key = A[j]
+    i = j - 1
+    while i > 0 and A[i] > key:
+        A[i + 1] = A[i]
+        i = i - 1
+    A[i + 1] = key
+```
 
-almost everyone have played poker we always put the small in left and the bigs in right;  
-
-for one of the poker **we just compare it with the pokers before it and insert it in the correct location;**  
-
-it's the main idea in insertion sort  
-
-so first let's look at the pseudocode:
-
-INSERTION SORT(A,N)//sort a[1->n]
-for j=2->n;  
- do key<-a[j]  
- i=j-1;  
- while i>0 and a[i]>key
-  |do a[i+1]<-a[i]  
-  |i=i-1  
-  |a[i+1]<-key  
-
-finish of all  
-
-by using C++ we can write it as:
+**C++ Implementation:**
 
 ``` c++
-
-void insertionsort(int &arr,int n){
-    for(int i=1;i<n;i++>){
-        int key=arr[i];
-        int j=i-1;
-        while(j>0&&arr[j]><key){
-            arr[j+1]=arr[j];
+void insertionSort(vector<int>& arr) {
+    int n = arr.size();
+    for (int i = 1; i < n; i++) {
+        int key = arr[i];
+        int j = i - 1;
+        while (j >= 0 && arr[j] > key) {
+            arr[j + 1] = arr[j];
             j--;
         }
-        a[j+1]=key;
+        arr[j + 1] = key;
     }
 }
-```  
+```
+
+**Complexity Analysis:**
+
+- **Worst-case (reverse-sorted input):** \(\Theta(n^2)\)
+- **Average-case:** \(\Theta(n^2)\)
+- **Best-case (already sorted):** \(\Theta(n)\)
+
+### 2. Merge Sort
+
+**Idea:** Divide-and-conquer approach. Recursively splits array into halves, sorts each half, and merges them.
+
+**Pseudocode:**
+
+```
+  
+MergeSort(A, left, right)
+if left < right:
+    mid = (left + right) / 2
+    MergeSort(A, left, mid)
+    MergeSort(A, mid + 1, right)
+    Merge(A, left, mid, right)
+```
+
+**C++ Implementation:**
+
+```cpp
+#include <iostream>
+#include <vector>
+using namespace std;
+
+void merge(vector<int>& arr, int left, int mid, int right) {
+    vector<int> temp(right - left + 1);
+    int i = left, j = mid + 1, k = 0;
+
+    while (i <= mid && j <= right) {
+        if (arr[i] <= arr[j]) temp[k++] = arr[i++];
+        else temp[k++] = arr[j++];
+    }
+
+    while (i <= mid) temp[k++] = arr[i++];
+    while (j <= right) temp[k++] = arr[j++];
+
+    for (int m = 0; m < k; m++) arr[left + m] = temp[m];
+}
+
+void mergeSort(vector<int>& arr, int left, int right) {
+    if (left >= right) return;
+
+    int mid = left + (right - left) / 2;
+    mergeSort(arr, left, mid);
+    mergeSort(arr, mid + 1, right);
+    merge(arr, left, mid, right);
+}
+```
+
+**Complexity Analysis:**
+
+- **Worst-case, Average-case, Best-case:** \(\Theta(n \log n)\)
+
+---
+
+By thoroughly understanding and practicing these basic algorithms, you'll build a solid foundation for more advanced algorithm studies!
