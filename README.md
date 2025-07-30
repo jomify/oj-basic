@@ -1,3 +1,2 @@
-## jomify-s-notebook
-
-for the master there is algorithms so **speed is always fun**;  
+## a oj basic code
+using for testing homework 
