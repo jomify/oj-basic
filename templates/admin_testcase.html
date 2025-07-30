@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h2 class="mb-3">Test Cases for {{ problem.title }}</h2>
+<form method="post" class="mb-4">
+  <div class="mb-3"><label class="form-label">Input:<textarea class="form-control" name="input_data" rows="2"></textarea></label></div>
+  <div class="mb-3"><label class="form-label">Expected Output:<textarea class="form-control" name="expected_output" rows="2"></textarea></label></div>
+  <button class="btn btn-primary" type="submit">Add Test Case</button>
+</form>
+<ul class="list-group">
+{% for tc in testcases %}
+  <li class="list-group-item">#{{ tc.id }} - <code>{{ tc.input_data|e }}</code> -> <code>{{ tc.expected_output|e }}</code></li>
+{% endfor %}
+</ul>
+{% endblock %}

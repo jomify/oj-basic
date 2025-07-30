@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h2 class="mb-3">Scoreboard - {{ exam.title }}</h2>
+<table class="table table-striped">
+  <thead><tr><th>User</th><th>Accepted Count</th></tr></thead>
+  <tbody>
+  {% for user, score in scores.items() %}
+  <tr><td>{{ user }}</td><td>{{ score }}</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
