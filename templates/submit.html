@@ -1,0 +1,9 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h2 class="mb-3">Submit for {{ problem.title }}</h2>
+<form method="post">
+  {% if exam_id %}<input type="hidden" name="exam_id" value="{{ exam_id }}">{% endif %}
+  <div class="mb-3"><textarea class="form-control" name="code" rows="20" cols="80"></textarea></div>
+  <button class="btn btn-primary" type="submit">Submit</button>
+</form>
+{% endblock %}

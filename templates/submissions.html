@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h2 class="mb-3">My Submissions</h2>
+<table class="table table-bordered">
+<thead><tr><th>ID</th><th>Problem</th><th>Result</th><th>Time</th></tr></thead>
+<tbody>
+{% for s in submissions %}
+<tr><td>{{ s.id }}</td><td>{{ s.problem_id }}</td><td>{{ s.result }}</td><td>{{ s.timestamp }}</td></tr>
+{% endfor %}
+</tbody>
+</table>
+{% endblock %}

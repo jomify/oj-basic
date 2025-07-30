@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h2 class="mb-3">Create Exam</h2>
+<form method="post" class="mb-5">
+  <div class="mb-3"><label class="form-label">Title:<input class="form-control" name="title"></label></div>
+  <div class="mb-3"><label class="form-label">Start Time (YYYY-MM-DD HH:MM:SS):<input class="form-control" name="start_time"></label></div>
+  <div class="mb-3"><label class="form-label">End Time (YYYY-MM-DD HH:MM:SS):<input class="form-control" name="end_time"></label></div>
+  <button class="btn btn-primary" type="submit">Create</button>
+</form>
+
+<h2 class="mb-3">Existing Exams</h2>
+<ul class="list-group">
+{% for e in exams %}
+  <li class="list-group-item"><a href="{{ url_for('exam', eid=e.id) }}">{{ e.title }}</a> ({{ e.start_time }} - {{ e.end_time }})</li>
+{% endfor %}
+</ul>
+{% endblock %}

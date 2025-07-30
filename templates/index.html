@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h1 class="mb-4">Problems</h1>
+<div class="list-group mb-5">
+{% for p in problems %}
+  <a class="list-group-item list-group-item-action" href="{{ url_for('problem', pid=p.id) }}">{{ p.title }}</a>
+{% endfor %}
+</div>
+
+<h2 class="mb-3">Exams</h2>
+<ul class="list-group">
+{% for e in exams %}
+  <li class="list-group-item"><a href="{{ url_for('exam', eid=e.id) }}">{{ e.title }}</a> ({{ e.start_time }} - {{ e.end_time }})</li>
+{% endfor %}
+</ul>
+{% endblock %}

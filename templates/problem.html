@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h2>{{ problem.title }}</h2>
+<pre>{{ problem.description }}</pre>
+<h3>Input</h3>
+<pre>{{ problem.input_desc }}</pre>
+<h3>Output</h3>
+<pre>{{ problem.output_desc }}</pre>
+{% if problem.sample_input %}<h3>Sample Input</h3><pre>{{ problem.sample_input }}</pre>{% endif %}
+{% if problem.sample_output %}<h3>Sample Output</h3><pre>{{ problem.sample_output }}</pre>{% endif %}
+<a class="btn btn-primary" href="{{ url_for('submit', pid=problem.id, exam=exam_id) }}">Submit</a>
+{% endblock %}
